@@ -24,7 +24,7 @@ export default function MainScreen({ navigation }: any) {
         backgroundColor: colors[themeColor].card,
       }}
     >
-      <MainHeader />
+      <MainHeader navigation={navigation} />
       <NotesBlock />
     </View>
   )

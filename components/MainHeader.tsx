@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 const width = Dimensions.get('screen').width
 
-export function MainHeader() {
+export function MainHeader(props: any) {
   const themeColor = 'light'
   return (
     <View
@@ -29,7 +29,12 @@ export function MainHeader() {
         >
           My notes
         </Text>
-        <TouchableOpacity activeOpacity={0.8} onPress={() => {}}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => {
+            props.navigation.navigate('NoteScreen')
+          }}
+        >
           <Ionicons
             name="ellipsis-vertical"
             size={width * 0.07}

@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/stack'
 import LaunchScreen from '../screens/LaunchScreen'
 import MainScreen from '../screens/MainScreen'
+import NoteScreen from '../screens/NoteScreen'
 
 const Stack = createStackNavigator()
 
@@ -29,6 +30,19 @@ export default function MainNavigation() {
         }}
         name="MainScreen"
         component={MainScreen}
+      />
+
+      <Stack.Screen
+        options={{
+          headerShown: false,
+          headerLeft: () => null,
+          animationEnabled: true,
+          gestureDirection: 'horizontal',
+          gestureEnabled: true,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+        name="NoteScreen"
+        component={NoteScreen}
       />
     </Stack.Navigator>
   )
