@@ -1,4 +1,4 @@
-import { Dimensions, View } from 'react-native'
+import { Dimensions, Text, View } from 'react-native'
 import colors from '../constants/colors'
 import { Note } from '../constants/interfaces'
 import { RootState } from '../redux'
@@ -16,12 +16,31 @@ export function NotesBlock() {
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center', // check this
         backgroundColor: colors[themeColor].bg,
         width: '100%',
         borderTopRightRadius: width * 0.07,
         borderTopLeftRadius: width * 0.07,
       }}
-    ></View>
+    >
+      {notes && notes.length ? (
+        <></>
+      ) : (
+        <>
+          <Text
+            style={{
+              // fontFamily: 'Sono_Bold',
+              fontWeight: '300',
+              letterSpacing: width * 0.012,
+              fontSize: width * 0.05,
+              color: colors[themeColor].main,
+              opacity: 0.5,
+            }}
+          >
+            Create your first note
+          </Text>
+        </>
+      )}
+    </View>
   )
 }
