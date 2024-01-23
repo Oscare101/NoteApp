@@ -8,6 +8,8 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { Fire } from './constants/icons'
+import IconBlock from './components/IconBlock'
 
 const storage = new MMKV()
 
@@ -61,7 +63,7 @@ export default function App() {
           onChange={handleSheetChanges}
         >
           <View style={styles.contentContainer}>
-            <Text>Awesome 🎉</Text>
+            <IconBlock />
           </View>
         </BottomSheetModal>
       </BottomSheetModalProvider>
