@@ -1,31 +1,30 @@
 import 'react-native-gesture-handler'
-import { StatusBar } from 'expo-status-bar'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { StatusBar } from 'react-native'
 import { MMKV } from 'react-native-mmkv'
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet'
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { Fire } from './constants/icons'
-import IconBlock from './components/IconBlock'
+import { NavigationContainer } from '@react-navigation/native'
+import MainNavigation from './navigation/MainNavigation'
+import colors from './constants/colors'
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 
 const storage = new MMKV()
 
 export default function App() {
   const [count, setCount] = useState<number>(0)
 
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null)
-  const snapPoints = useMemo(() => ['25%', '50%'], [])
+  // const bottomSheetModalRef = useRef<BottomSheetModal>(null)
+  // const snapPoints = useMemo(() => ['25%', '50%'], [])
 
   // callbacks
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present()
-  }, [])
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index)
-  }, [])
+  // const handlePresentModalPress = useCallback(() => {
+  //   bottomSheetModalRef.current?.present()
+  // }, [])
+  // const handleSheetChanges = useCallback((index: number) => {
+  //   console.log('handleSheetChanges', index)
+  // }, [])
 
   useEffect(() => {
     const key = storage.getNumber('key')
@@ -34,9 +33,26 @@ export default function App() {
     }
   }, [])
 
+  function AppComponent() {
+    const themeColor: any = 'light'
+    return (
+      <>
+        <StatusBar
+          barStyle={themeColor === 'dark' ? 'light-content' : 'dark-content'}
+          backgroundColor={colors[themeColor].card}
+        />
+      </>
+    )
+  }
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <BottomSheetModalProvider>
+    <Provider store={store}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <AppComponent />
+          <MainNavigation />
+        </NavigationContainer>
+        {/* <BottomSheetModalProvider>
         <View style={styles.container}>
           <Text>{count}</Text>
           <StatusBar style="auto" />
@@ -66,21 +82,8 @@ export default function App() {
             <IconBlock />
           </View>
         </BottomSheetModal>
-      </BottomSheetModalProvider>
-    </GestureHandlerRootView>
+      </BottomSheetModalProvider> */}
+      </GestureHandlerRootView>
+    </Provider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#eee',
-  },
-})

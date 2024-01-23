@@ -1,4 +1,4 @@
-export default {
+const colors: any = {
   light: {
     main: '#050D16',
     bg: '#FFFDFC',
@@ -12,3 +12,5 @@ export default {
     errorBg: '#FFE0E1',
   },
 }
+
+export default colors
