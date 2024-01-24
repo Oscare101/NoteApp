@@ -25,7 +25,7 @@ export default function MainScreen({ navigation }: any) {
       }}
     >
       <MainHeader navigation={navigation} />
-      <NotesBlock />
+      <NotesBlock navigation={navigation} />
     </View>
   )
 }

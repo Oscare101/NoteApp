@@ -23,7 +23,9 @@ export default function NoteScreen({ navigation, route }: any) {
 
   const [title, setTitle] = useState<string>('')
   const [text, setText] = useState<string>('')
-  const [color, setColor] = useState<string>(GetPalette(themeColor)[0])
+  const [color, setColor] = useState<string>(
+    route.params.note.color || GetPalette(themeColor)[0]
+  )
   const [titleFocus, setTitleFocus] = useState<boolean>(false)
 
   const distach = useDispatch()
@@ -55,7 +57,12 @@ export default function NoteScreen({ navigation, route }: any) {
           width: '92%',
         }}
       >
-        <TouchableOpacity activeOpacity={0.8} onPress={() => {}}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => {
+            navigation.goBack()
+          }}
+        >
           <Ionicons
             name="chevron-back-outline"
             size={width * 0.07}
