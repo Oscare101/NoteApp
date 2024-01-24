@@ -4,6 +4,7 @@ const colors: any = {
     bg: '#FFFDFC',
     card: '#FFF7E6',
     button: '#FFE4B0',
+    buttonAccent: '#7E5301',
     successMain: '#51AB32',
     successBg: '#CBE6C2',
     warningMain: '#EAD40A',

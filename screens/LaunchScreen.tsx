@@ -13,7 +13,8 @@ export default function LaunchScreen({ navigation }: any) {
   const dispatch = useDispatch()
 
   async function GetData() {
-    const data = storage.getString('notes')
+    const data = await storage.getString('notes')
+    console.log(data)
 
     if (data && JSON.parse(data)?.length) {
       dispatch(updateNotes(JSON.parse(data)))

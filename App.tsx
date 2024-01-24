@@ -9,12 +9,13 @@ import MainNavigation from './navigation/MainNavigation'
 import colors from './constants/colors'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import { Note } from './constants/interfaces'
+import { RootState } from './redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const storage = new MMKV()
 
 export default function App() {
-  const [count, setCount] = useState<number>(0)
-
   // const bottomSheetModalRef = useRef<BottomSheetModal>(null)
   // const snapPoints = useMemo(() => ['25%', '50%'], [])
 
@@ -26,15 +27,18 @@ export default function App() {
   //   console.log('handleSheetChanges', index)
   // }, [])
 
-  useEffect(() => {
-    const key = storage.getNumber('key')
-    if (key) {
-      setCount(key)
-    }
-  }, [])
-
   function AppComponent() {
     const themeColor: any = 'light'
+    const notes: Note[] = useSelector((state: RootState) => state.notes)
+
+    useEffect(() => {
+      console.log('create')
+
+      console.log(JSON.stringify(notes))
+
+      storage.set('notes', JSON.stringify(notes))
+    }, [notes])
+
     return (
       <>
         <StatusBar
